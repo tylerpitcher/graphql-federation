@@ -23,6 +23,7 @@
 hs_err_pid*
 replay_pid*
 
-# Misc
+# Build
 .idea
 target
+node_modules
