@@ -4,14 +4,15 @@ const bodyParser = require("body-parser");
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
 const { ApolloGateway, IntrospectAndCompose } = require("@apollo/gateway");
+const env = require("./env");
 
 const app = express();
 
 const gateway = new ApolloGateway({
   supergraphSdl: new IntrospectAndCompose({
     subgraphs: [
-      { name: "courses", url: "http://localhost:8081/graphql" },
-      { name: "students", url: "http://localhost:8082/graphql" },
+      { name: "courses", url: env.COURSES_ENDPOINT },
+      { name: "students", url: env.STUDENTS_ENDPOINT },
     ],
   }),
 });
