@@ -1,0 +1,16 @@
+type Query {
+    student(id: ID!): Student
+    students: [Student]
+}
+
+type Student @key(fields: "id") {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    age: Int!
+}
+
+type Course @key(fields: "id") @extends {
+    id: ID @external
+    students: [Student]
+}
