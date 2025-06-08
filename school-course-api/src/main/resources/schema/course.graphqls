@@ -1,0 +1,19 @@
+type Query {
+    course(id: ID!): Course
+    courses: [Course]
+}
+
+type Mutation {
+    createCourse(name: String!): Course
+    enrollStudentInCourse(studentId: ID!, courseId: ID!): Course
+}
+
+type Course @key(fields: "id") {
+    id: ID!
+    name: String!
+}
+
+type Student @key(fields: "id") @extends {
+    id: ID @external
+    courses: [Course]
+}

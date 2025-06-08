@@ -3,6 +3,10 @@ type Query {
     students: [Student]
 }
 
+type Mutation {
+    createStudent(firstName: String!, lastName: String!, age: Int!): Student
+}
+
 type Student @key(fields: "id") {
     id: ID!
     firstName: String!

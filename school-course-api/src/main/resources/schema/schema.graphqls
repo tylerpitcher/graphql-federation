@@ -1,9 +1,0 @@
-type Query {
-    course(id: ID!): Course
-    courses: [Course]
-}
-
-type Course @key(fields: "id") {
-    id: ID!
-    name: String!
-}
