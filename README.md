@@ -25,7 +25,7 @@ docker compose build
 
 3. Run Containers
 ```bash
-bash compose up
+docker compose up
 ```
 
 4. Access in Browser
