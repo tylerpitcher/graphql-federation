@@ -13,22 +13,30 @@ All client requests are funneled through the gateway at `http://localhost:8080/g
 ![School API Components](federation-architecture.svg)
 
 ## How to Run
-1. Build Jars
+1. Create a .env
+```text
+DB_URL=jdbc:postgresql://postgres:5432/school
+POSTGRES_DB=school
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+```
+
+2. Build Jars
 ```bash
 mvn clean package -DskipTests
 ```
 
-2. Build Docker Images
+3. Build Docker Images
 ```bash
 docker compose build
 ```
 
-3. Run Containers
+4. Run Containers
 ```bash
 docker compose up
 ```
 
-4. Access in Browser
+5. Access in Browser
 ```text
 http://localhost:8080/graphql
 ```
