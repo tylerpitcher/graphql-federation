@@ -1,5 +1,14 @@
 services:
-  gateway:
+  school-client:
+    build:
+      context: ./school-client
+    ports:
+      - "80:80"
+    depends_on:
+      - school-gateway
+    restart: always
+
+  school-gateway:
     build:
       context: ./school-gateway
     ports:

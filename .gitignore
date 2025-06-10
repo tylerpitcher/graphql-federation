@@ -24,7 +24,12 @@ hs_err_pid*
 replay_pid*
 
 # Build
-.idea
 .env
 target
 node_modules
+.angular
+dist
+
+# Misc
+.idea
+.DS_Store
