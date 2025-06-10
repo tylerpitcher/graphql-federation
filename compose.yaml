@@ -10,7 +10,7 @@ services:
     environment:
       - COURSES_ENDPOINT=http://courses-api:8081/graphql
       - STUDENTS_ENDPOINT=http://students-api:8082/graphql
-    restart: on-failure
+    restart: always
 
   courses-api:
     build:
