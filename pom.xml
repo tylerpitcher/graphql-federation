@@ -9,21 +9,23 @@
         <version>3.4.6</version>
     </parent>
 
-    <groupId>com.example</groupId>
-    <artifactId>school-service</artifactId>
+    <groupId>com.example.company</groupId>
+    <artifactId>company-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>school-service</name>
+    <name>company-service</name>
 
     <modules>
-        <module>school-types</module>
-        <module>school-course-api</module>
-        <module>school-student-api</module>
+        <module>company-shared</module>
+        <module>company-employee-api</module>
+        <module>company-team-api</module>
     </modules>
 
     <properties>
         <java.version>21</java.version>
         <netflix-dgs.version>10.1.2</netflix-dgs.version>
+        <lombok.version>1.18.32</lombok.version>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -35,8 +37,21 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.7.7</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
 
     <build>
         <pluginManagement>
@@ -44,13 +59,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.11.0</version>
+                    <version>${maven-compiler-plugin.version}</version>
                     <configuration>
                         <release>${java.version}</release>
                         <parameters>true</parameters>
                     </configuration>
                 </plugin>
-
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>

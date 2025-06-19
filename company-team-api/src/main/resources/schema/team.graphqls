@@ -1,0 +1,19 @@
+type Query {
+    teams: [Team]
+    team(id: ID!): Team
+}
+
+type Mutation {
+    createTeam(name: String!): Team
+    addToTeam(employeeId: ID!, teamId: ID!): Team
+}
+
+type Team @key(fields: "id") {
+    id: ID!
+    name: String!
+}
+
+type Employee @key(fields: "id") @extends {
+    id: ID! @external
+    teams: [Team]
+}

@@ -1,0 +1,18 @@
+type Query {
+    employee(id: ID!): Employee
+    employees: [Employee]
+}
+
+type Mutation {
+    createEmployee(name: String!): Employee
+}
+
+type Employee @key(fields: "id") {
+    id: ID!
+    name: String!
+}
+
+type Team @key(fields: "id") @extends {
+    id: ID! @external
+    members: [Employee]
+}
