@@ -28,4 +28,25 @@
   <div *ngIf="students && students.length === 0" class="text-stone-600 italic mt-4">
     No students found.
   </div>
+
+  <form (ngSubmit)="createStudent()" class="mt-6">
+    <h2 class="text-xl font-semibold mb-2">Add New Student</h2>
+
+    <div class="flex flex-col md:flex-row gap-4 mb-4">
+      <input type="text" [(ngModel)]="firstName" name="firstName" placeholder="First Name"
+             class="border border-stone-300 rounded px-3 py-2 w-full" required>
+
+      <input type="text" [(ngModel)]="lastName" name="lastName" placeholder="Last Name"
+             class="border border-stone-300 rounded px-3 py-2 w-full" required>
+
+      <input type="number" [(ngModel)]="age" name="age" placeholder="Age"
+             class="border border-stone-300 rounded px-3 py-2 w-full" required>
+    </div>
+
+    <button type="submit"
+            [disabled]="loading"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+      {{ loading ? 'Submitting...' : 'Create Student' }}
+    </button>
+  </form>
 </section>
