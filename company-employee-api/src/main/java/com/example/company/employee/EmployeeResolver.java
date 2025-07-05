@@ -24,7 +24,7 @@ public class EmployeeResolver {
 
     @DgsMutation
     public Employee createEmployee(@InputArgument String name) {
-        return employeeService.createStudent(name);
+        return employeeService.createEmployee(name);
     }
 
     @DgsEntityFetcher(name = "Team")
@@ -36,6 +36,11 @@ public class EmployeeResolver {
     public Set<Employee> employeesForTeam(DgsDataFetchingEnvironment dfe) {
         Team team = Objects.requireNonNull(dfe.getSource(), "Team source cannot be null");
         return employeeService.getEmployeesByTeamId(team.getId());
+    }
+
+    @DgsMutation
+    public Employee deleteEmployee(@InputArgument UUID id) {
+        return employeeService.deleteEmployee(id);
     }
 
 }

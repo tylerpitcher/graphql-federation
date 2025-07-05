@@ -27,8 +27,14 @@ public class EmployeeService {
         return employeeRepository.findAllByTeams_Id(teamId);
     }
 
-    public Employee createStudent(String name) {
+    public Employee createEmployee(String name) {
         return employeeRepository.save(new Employee(name));
+    }
+
+    public Employee deleteEmployee(UUID id) {
+        Employee employee = getEmployeeById(id);
+        employeeRepository.deleteById(id);
+        return employee;
     }
 
 }

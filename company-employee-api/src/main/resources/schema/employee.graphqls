@@ -5,6 +5,7 @@ type Query {
 
 type Mutation {
     createEmployee(name: String!): Employee
+    deleteEmployee(id: ID!): Employee
 }
 
 type Employee @key(fields: "id") {

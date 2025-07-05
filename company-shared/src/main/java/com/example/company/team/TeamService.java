@@ -26,17 +26,17 @@ public class TeamService {
                 .orElseThrow(() -> new TeamNotFoundException("Team with id of '%s' not found".formatted(id)));
     }
 
-    public Set<Team> getTeamsByEmployeeId(UUID studentId)  {
-        return teamRepository.findAllByMembers_Id(studentId);
+    public Set<Team> getTeamsByEmployeeId(UUID employeeId)  {
+        return teamRepository.findAllByMembers_Id(employeeId);
     }
 
     public Team createTeam(String name) {
         return teamRepository.save(new Team(name));
     }
 
-    public Team addToTeam(UUID employeeId, UUID courseId) {
+    public Team addToTeam(UUID employeeId, UUID teamId) {
         Employee employee = employeeService.getEmployeeById(employeeId);
-        Team team = getTeamById(courseId);
+        Team team = getTeamById(teamId);
 
         if (!team.getMembers().contains(employee)) {
             team.getMembers().add(employee);

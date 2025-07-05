@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+       http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <!-- Create employee table -->
+    <changeSet id="1-create-employee" author="tylerpitcher">
+        <createTable tableName="employee">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMPTZ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMPTZ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Create team table -->
+    <changeSet id="2-create-team" author="tylerpitcher">
+        <createTable tableName="team">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMPTZ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMPTZ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Create membership (join) table with ON DELETE CASCADE -->
+    <changeSet id="3-create-membership" author="tylerpitcher">
+        <createTable tableName="membership">
+            <column name="team_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="membership"
+                baseColumnNames="team_id"
+                constraintName="fk_membership_team"
+                referencedTableName="team"
+                referencedColumnNames="id"
+                deferrable="true"
+                initiallyDeferred="true"
+                onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint
+                baseTableName="membership"
+                baseColumnNames="employee_id"
+                constraintName="fk_membership_employee"
+                referencedTableName="employee"
+                referencedColumnNames="id"
+                deferrable="true"
+                initiallyDeferred="true"
+                onDelete="CASCADE"/>
+
+        <addUniqueConstraint
+                tableName="membership"
+                columnNames="team_id, employee_id"
+                constraintName="uc_membership_team_employee"/>
+    </changeSet>
+
+</databaseChangeLog>
